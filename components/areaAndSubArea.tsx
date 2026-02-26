@@ -9,7 +9,7 @@ export default function AreaAndSubArea() {
   const [areaValue, setAreaValue] = useState("");
   const [subAreaValue, setSubAreaValue] = useState("");
 
-  const TOKEN = "ngawurtoken";
+  const TOKEN = "ngawurtoken"; // tanpa token ternayata bisa
   const COMPANY_ID = "f1da060c-026e-43fd-b65a-8a2cd7ece617";
 
   const AREA_UNIT_ID = "c9536f10-99bf-4e29-8ddb-92bc09361819";
