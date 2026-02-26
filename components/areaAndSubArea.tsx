@@ -54,7 +54,7 @@ export default function AreaAndSubArea() {
     return items;
   };
 
-  const createData = async (type) => {
+  const createData = async (type: "area" | "subarea") => {
     try {
       setLoading(true);
       setMessage("");
@@ -81,7 +81,7 @@ export default function AreaAndSubArea() {
   return (
     <div className="text-white" style={{ padding: 30 }}>
       <div style={{ marginBottom: 16 }}>
-        <label className="block mb-1">Area Value:</label>
+        <label className="block mb-1">Area</label>
         <input
           type="text"
           value={areaValue}
@@ -90,7 +90,7 @@ export default function AreaAndSubArea() {
           placeholder="Masukkan value area"
           style={{ marginRight: 10 }}
         />
-        <label className="block mb-1">Sub Area Value:</label>
+        <label className="block mb-1">Sub Area</label>
         <input
           type="text"
           value={subAreaValue}
