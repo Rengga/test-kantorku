@@ -71,7 +71,12 @@ export default function AreaAndSubArea() {
 
       setMessage(type === "area" ? "20 Area berhasil dibuat" : "20 Sub Area berhasil dibuat");
     } catch (error) {
-      console.error(error.response?.data || error.message);
+      if (typeof error === "object" && error !== null) {
+        // @ts-expect-error: eror opo iki
+        console.error(error.response?.data || error.message);
+      } else {
+        console.error(error);
+      }
       setMessage("Error");
     } finally {
       setLoading(false);
