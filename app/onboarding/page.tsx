@@ -23,7 +23,7 @@ const divisionPrefix: Record<string, string> = {
 
 export default function OnboardingPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
+  const [editEmployee, setEditEmployee] = useState<Employee | null>(null);
 
   const [divisionCounters, setDivisionCounters] = useState<Record<string, number>>({
     IT: 0,
@@ -44,9 +44,9 @@ export default function OnboardingPage() {
   };
 
   const addOrUpdateEmployee = (data: Omit<Employee, "id" | "status">) => {
-    if (editingEmployee) {
-      setEmployees(employees.map((p) => (p.id === editingEmployee.id ? { ...p, ...data, status: "PENDING" } : p)));
-      setEditingEmployee(null);
+    if (editEmployee) {
+      setEmployees(employees.map((p) => (p.id === editEmployee.id ? { ...p, ...data, status: "PENDING" } : p)));
+      setEditEmployee(null);
     } else {
       const id = generateEmployeeId(data.division);
 
@@ -66,9 +66,8 @@ export default function OnboardingPage() {
 
   return (
     <div className="space-y-8">
-      <OnboardingForm onSubmit={addOrUpdateEmployee} editingEmployee={editingEmployee} />
-
-      <OnboardingTable employees={employees} onUpdateStatus={updateStatus} onEdit={setEditingEmployee} />
+      <OnboardingForm onSubmit={addOrUpdateEmployee} editEmployee={editEmployee} />
+      <OnboardingTable employees={employees} onUpdateStatus={updateStatus} onEdit={setEditEmployee} />
     </div>
   );
 }

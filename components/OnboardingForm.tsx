@@ -5,10 +5,10 @@ import { Employee } from "@/app/onboarding/page";
 
 interface Props {
   onSubmit: (data: Omit<Employee, "id" | "status">) => void;
-  editingEmployee: Employee | null;
+  editEmployee: Employee | null;
 }
 
-export default function OnboardingForm({ onSubmit, editingEmployee }: Props) {
+export default function OnboardingForm({ onSubmit, editEmployee }: Props) {
   const [form, setForm] = useState({
     nama: "",
     email: "",
@@ -18,16 +18,16 @@ export default function OnboardingForm({ onSubmit, editingEmployee }: Props) {
   });
 
   useEffect(() => {
-    if (editingEmployee) {
+    if (editEmployee) {
       setForm({
-        nama: editingEmployee.nama,
-        email: editingEmployee.email,
-        division: editingEmployee.division,
-        role: editingEmployee.role,
-        salary: editingEmployee.salary.toString(),
+        nama: editEmployee.nama,
+        email: editEmployee.email,
+        division: editEmployee.division,
+        role: editEmployee.role,
+        salary: editEmployee.salary.toString(),
       });
     }
-  }, [editingEmployee]);
+  }, [editEmployee]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -55,7 +55,7 @@ export default function OnboardingForm({ onSubmit, editingEmployee }: Props) {
 
   return (
     <div className="bg-white p-6 rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">{editingEmployee ? "Edit Employee" : "Employee Onboarding"}</h2>
+      <h2 className="text-xl font-bold mb-4">{editEmployee ? "Edit Employee" : "Employee Onboarding"}</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
         <input required name="nama" value={form.nama} onChange={handleChange} placeholder="Nama" className="input" />
@@ -79,7 +79,7 @@ export default function OnboardingForm({ onSubmit, editingEmployee }: Props) {
         <input required type="number" name="salary" value={form.salary} onChange={handleChange} placeholder="Basic Salary" className="input col-span-2" />
 
         <button className="col-span-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          {editingEmployee ? "Update & Re-submit" : "Submit for Approval"}
+          {editEmployee ? "Update & Re-submit" : "Submit for Approval"}
         </button>
       </form>
     </div>
